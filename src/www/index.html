@@ -4,7 +4,58 @@
     <title>gulp test</title>
 </head>
 <body>
-  hey
+<h1>Considered-Solved-Archived</h1>
+<p>the progress will be saved into your browser.</p>
+<div id="app">
+  <button type="button" name="button" v-on="click: addProblem()">[+]</button>
+
+  <button type="button" name="button" v-on="click: toggleMode('considered')">considered</button>
+  <button type="button" name="button" v-on="click: toggleMode('solved')">solved</button>
+  <button type="button" name="button" v-on="click: toggleMode('archived')">archived</button>
+
+  <div id="considered" v-show="mode == 'considered'">
+    <div v-repeat="problem in problems | filterBy 'considered' in 'state'">
+      <div v-show="!problem.editing">
+        <p><a href="{{ problem.url }}">{{ problem.name }} -  {{ expressTime(problem.date) }}</p></a>
+        <pre>{{ problem.thought }}</pre>
+        <button type="button" name="solved" v-on="click: moveState(problem, 'solved')">[s]</button>
+        <button type="button" name="solved" v-on="click: removeProblem(problem)">[x]</button>
+      </div>
+      <div v-show="problem.editing">
+        <form class="" action="index.html" method="post">
+          <input type="text" name="name" v-model="problem.name">
+          <input type="text" name="url" v-model="problem.url">
+          <textarea name="thought" rows="8" cols="40" v-model="problem.thought"></textarea>
+        </form>
+      </div>
+      <button type="button" name="toggle" v-on="click: toggleForm(problem)">[/]</button>
+      <hr>
+    </div>
+  </div>
+
+  <div id="solved" v-show="mode == 'solved'">
+    <div v-repeat="problem in problems | filterBy 'solved' in 'state'">
+      <div v-show="!problem.editing">
+        <p><a href="{{ problem.url }}">{{ problem.name }} -  {{ expressTime(problem.date) }}</p></a>
+        <pre>{{ problem.thought }}</pre>
+        <button type="button" name="solved" v-on="click: moveState(problem, 'archived')">[a]</button>
+        <button type="button" name="solved" v-on="click: removeProblem(problem)">[x]</button>
+      </div>
+      <hr>
+    </div>
+  </div>
+
+  <div id="archived" v-show="mode == 'archived'">
+    <div v-repeat="problem in problems | filterBy 'archived' in 'state'">
+      <div v-show="!problem.editing">
+        <p><a href="{{ problem.url }}">{{ problem.name }} -  {{ expressTime(problem.date) }}</p></a>
+        <pre>{{ problem.thought }}</pre>
+        <button type="button" name="solved" v-on="click: removeProblem(problem)">[x]</button>
+      </div>
+      <hr>
+    </div>
+  </div>
+</div>
 <script src="js/bundle.js"></script>
 </body>
 </html>
