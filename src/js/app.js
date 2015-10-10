@@ -31,6 +31,9 @@ var app = new Vue({
           count++;
         }
       }
+      if (count === 0) {
+        return '';
+      }
       return 'Solved ' + count + '/' + total;
     },
 

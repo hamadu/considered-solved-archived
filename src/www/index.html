@@ -1,14 +1,14 @@
 <!doctype html>
 <html>
 <head>
-    <title>gulp test</title>
+    <title>CSA</title>
     <link rel="stylesheet" href="css/style.min.css">
 </head>
 <body>
 
 <div class="container">
   <h1>Considered-Solved-Archived</h1>
-  <p>the progress will be saved into your browser.</p>
+  <p>the progress will be saved into your browser(localStorage).</p>
 </div>
 
 <div class="container" v-cloak>
@@ -20,7 +20,7 @@
     </div>
 
     <ul class="nav nav-tabs">
-      <li role="presentation" v-class="active: mode === 'considered'"><a href="" v-on="click: toggleMode('considered')">considered</a></li>
+      <li role="presentation" v-class="active: mode === 'considered'"><a href="#" v-on="click: toggleMode('considered')">considered</a></li>
       <li role="presentation" v-class="active: mode === 'solved'"><a href="#" v-on="click: toggleMode('solved')">solved</a></li>
       <li role="presentation" v-class="active: mode === 'archived'"><a href="#" v-on="click: toggleMode('archived')">archived</a></li>
     </ul>
@@ -31,13 +31,16 @@
       </button>
 
       <div v-repeat="problem in problems | filterBy 'considered' in 'state'">
-        <button type="button" class="btn btn-primary btn-sm" name="toggle" v-on="click: toggleForm(problem)">
+        <button type="button" class="btn btn-primary btn-sm" name="toggleForm" v-on="click: toggleForm(problem)">
           <span class="glyphicon glyphicon-pencil"></span>
         </button>
         <div v-show="!problem.editing">
           <p>
             <span class="glyphicon glyphicon-file"></span><a href="{{ problem.url }}">{{ problem.name }}</a>&nbsp;
-            <span class="glyphicon glyphicon-time"></span>{{ expressTime(problem.date) }}
+            <span class="glyphicon glyphicon-time"></span>{{ expressTime(problem.date) }}&nbsp;
+            <button type="button" class="btn btn-primary btn-sm" name="toggleThought" v-on="click: toggleThought(problem)">
+              <span class="glyphicon glyphicon-book"></span>
+            </button>
           </p>
           <div v-show="problem.showingThought">
             <pre>{{ problem.thought }}</pre>
@@ -63,7 +66,13 @@
     <div id="solved" v-show="mode == 'solved'">
       <div v-repeat="problem in problems | filterBy 'solved' in 'state'">
         <div v-show="!problem.editing">
-          <p><a href="{{ problem.url }}">{{ problem.name }} -  {{ expressTime(problem.date) }}</p></a>
+          <p>
+            <span class="glyphicon glyphicon-file"></span><a href="{{ problem.url }}">{{ problem.name }}</a>&nbsp;
+            <span class="glyphicon glyphicon-time"></span>{{ expressTime(problem.date) }}&nbsp;
+            <button type="button" class="btn btn-primary btn-sm" name="toggleThought" v-on="click: toggleThought(problem)">
+              <span class="glyphicon glyphicon-book"></span>
+            </button>
+          </p>
           <div v-show="problem.showingThought">
             <pre>{{ problem.thought }}</pre>
           </div>
@@ -81,7 +90,13 @@
     <div id="archived" v-show="mode == 'archived'">
       <div v-repeat="problem in problems | filterBy 'archived' in 'state'">
         <div v-show="!problem.editing">
-          <p><a href="{{ problem.url }}">{{ problem.name }} -  {{ expressTime(problem.date) }}</p></a>
+          <p>
+            <span class="glyphicon glyphicon-file"></span><a href="{{ problem.url }}">{{ problem.name }}</a>&nbsp;
+            <span class="glyphicon glyphicon-time"></span>{{ expressTime(problem.date) }}&nbsp;
+            <button type="button" class="btn btn-primary btn-sm" name="toggleThought" v-on="click: toggleThought(problem)">
+              <span class="glyphicon glyphicon-book"></span>
+            </button>
+          </p>
           <div v-show="problem.showingThought">
             <pre>{{ problem.thought }}</pre>
           </div>
