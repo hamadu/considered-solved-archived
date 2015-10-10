@@ -9,13 +9,21 @@
   "author": "hama_du",
   "license": "MIT",
   "devDependencies": {
+    "bootstrap": "^3.3.5",
+    "css-loader": "^0.19.0",
+    "file-loader": "^0.8.4",
     "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
     "gulp-if": "^2.0.0",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-plumber": "^1.0.1",
     "gulp-uglify": "^1.4.1",
     "gulp-watch": "^4.3.5",
     "gulp-webpack": "^1.5.0",
     "moment": "^2.10.6",
     "require-dir": "^0.3.0",
+    "style-loader": "^0.12.4",
+    "url-loader": "^0.5.6",
     "vue": "^0.12.16"
   }
 }

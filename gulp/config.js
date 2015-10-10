@@ -13,6 +13,11 @@ module.exports = {
     uglify: false
   },
 
+  css: {
+    src: src + '/css/**',
+    dest: dest + '/css'
+  },
+
   webpack: {
     entry: src + '/js/app.js',
     output: {
@@ -20,6 +25,20 @@ module.exports = {
     },
     resolve: {
       extensions: ['', '.js']
+    },
+    module: {
+      loaders: [
+        { test: /\.css$/, loader: 'style!css' },
+
+        { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
+        // { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
+        // { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
+        //
+        // { test: /\.svg$/, loader: 'url-loader?mimetype=image/svg+xml' },
+        // { test: /\.woff2$/, loader: 'url-loader?mimetype=application/font-woff' },
+        // { test: /\.eot$/, loader: 'url-loader?mimetype=application/font-woff' },
+        // { test: /\.ttf$/, loader: 'url-loader?mimetype=application/font-woff' }
+      ]
     }
   },
 
@@ -32,6 +51,7 @@ module.exports = {
 
   watch: {
     js: relativeSrcPath + '/js/**',
+    css: relativeSrcPath + '/css/**',
     www: relativeSrcPath + '/www/index.html'
   }
 }

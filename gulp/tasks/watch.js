@@ -7,6 +7,10 @@ gulp.task('watch', function () {
         gulp.start(['webpack']);
     });
 
+    watch(config.css, function () {
+        gulp.start(['css']);
+    });
+
     watch(config.www, function () {
         gulp.start(['copy']);
     });
