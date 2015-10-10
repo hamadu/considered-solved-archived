@@ -23,6 +23,31 @@ var app = new Vue({
       Problem.save(this.problems);
     },
 
+    expressProgress: function() {
+      var total = this.problems.length;
+      var count = 0;
+      for (var i = 0; i < total ; i++) {
+        if (this.problems[i].state !== 'considered') {
+          count++;
+        }
+      }
+      return 'Solved ' + count + '/' + total;
+    },
+
+    solvedRate: function() {
+      var total = this.problems.length;
+      if (total === 0) {
+        return 0;
+      }
+      var count = 0;
+      for (var i = 0; i < total ; i++) {
+        if (this.problems[i].state !== 'considered') {
+          count++;
+        }
+      }
+      return Math.ceil(count * 100 / total);
+    },
+
     countProblems: function(state) {
       var count = 0;
       for (var i = 0; i < this.problems.length; i++) {
@@ -44,7 +69,12 @@ var app = new Vue({
     toggleForm: function(problem) {
       problem.editing = !problem.editing;
       if (!problem.editing) {
-        problem.date = Date.now();
+        // remove if empty
+        if (problem.name === '' && problem.url === '') {
+          this.removeProblem(problem);
+        } else {
+          problem.date = Date.now();
+        }
         Problem.save(this.problems);
       }
     },
