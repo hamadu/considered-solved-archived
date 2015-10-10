@@ -10,7 +10,7 @@ module.exports = {
   js: {
     src: src + '/js/**',
     dest: dest + '/js',
-    uglify: true
+    uglify: false
   },
 
   css: {
