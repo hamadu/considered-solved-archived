@@ -56,9 +56,9 @@
         </div>
         <div v-show="problem.editing">
           <form class="" action="index.html" method="post">
-            <input type="text" class="form-control" name="name" v-model="problem.name">
-            <input type="text" class="form-control" name="url" v-model="problem.url">
-            <textarea name="thought" class="form-control" rows="8" cols="40" v-model="problem.thought"></textarea>
+            <input type="text" class="form-control" placeholder="タイトル" name="name" v-model="problem.name">
+            <input type="text" class="form-control" placeholder="URL" name="url" v-model="problem.url">
+            <textarea name="thought" class="form-control" placeholder="考察" rows="8" cols="40" v-model="problem.thought"></textarea>
           </form>
         </div>
         <hr>
