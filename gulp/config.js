@@ -1,3 +1,4 @@
+var webpack = require("webpack");
 var path = require('path');
 
 var dest = './build';
@@ -31,7 +32,10 @@ module.exports = {
         { test: /\.css$/, loader: 'style!css' },
         { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
       ]
-    }
+    },
+    plugins: [
+      new webpack.optimize.UglifyJsPlugin()
+    ]
   },
 
   copy: {
