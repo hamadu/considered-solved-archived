@@ -1,10 +1,8 @@
 require('bootstrap/dist/css/bootstrap.css');
 
 var Vue = require('vue');
-var moment = require('moment');
 var Problem = require('./components/problem');
-
-moment.locale('ja');
+var DateFormatter = require('./components/date');
 
 var app = new Vue({
   el: '#app',
@@ -62,7 +60,7 @@ var app = new Vue({
     },
 
     expressTime: function(date) {
-      return moment(date).format('YYYY-MM-DD HH:mm:ss');
+      return DateFormatter.format('YYYY-MM-DD HH:mm:ss', date);
     },
 
     toggleThought: function(problem) {
