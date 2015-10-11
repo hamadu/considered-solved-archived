@@ -60,7 +60,7 @@ var app = new Vue({
     },
 
     expressTime: function(date) {
-      return DateFormatter.format('YYYY-MM-DD HH:mm:ss', date);
+      return DateFormatter.format('YYYY-MM-DD hh:mm:ss', date);
     },
 
     toggleThought: function(problem) {
