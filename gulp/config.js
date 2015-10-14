@@ -1,17 +1,15 @@
-var webpack = require("webpack");
+var webpack = require('webpack');
 var path = require('path');
 
 var dest = './build';
 var src = './src';
-var relativeSrcPath = path.relative('.', src);
 
 module.exports = {
   dest: dest,
 
   js: {
     src: src + '/js/**',
-    dest: dest + '/js',
-    uglify: false
+    dest: dest + '/js'
   },
 
   css: {
@@ -46,8 +44,8 @@ module.exports = {
   },
 
   watch: {
-    js: relativeSrcPath + '/js/**',
-    css: relativeSrcPath + '/css/**',
-    www: relativeSrcPath + '/www/index.html'
+    js:  'src/js/**',
+    css: 'src/css/**',
+    www: 'src/www/index.html'
   }
 }
